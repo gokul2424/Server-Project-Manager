@@ -64,7 +64,24 @@ function finduserspecific(id,callback){
         });
        })
        
-    }
+}
+function findprojectspecific(id,callback){
+    console.log(id)
+    
+    connect((err,client)=>{const db = client.db(dbName);
+        const collection = db.collection('projectflag');
+       
+       
+        // Find some documents
+        collection.find({"_id": new ObjectId(id)}).toArray(function(err, docs) {
+          assert.equal(err, null);
+          console.log("Found the following project");
+          client.close();
+         callback(null,docs);
+        });
+       })
+       
+    }	
 function finduser(callback)
 {
 	connect((err,client)=>
@@ -315,19 +332,15 @@ function updatetask(body,callback)
 }
 
 
-function updateproject(body,callback)
+function updateproject(body,id,callback)
 {
     connect((err,client)=>
 	{
-		
+		console.log(id)
         const db = client.db(dbName);
-        
-		const collection1 = db.collection('projectflag');
-        //collection.find({'a': 3}).toArray(function(err, docs) {
-          //console.log(docs);
-          //});
-          //update one document
-        collection1.updateOne({projectname:body.projectname}, 
+        const collection1 = db.collection('projectflag');
+       
+        collection1.updateOne({_id:new ObjectId(id)}, 
 		{ 
 			$set: 
 			{ 
@@ -338,22 +351,15 @@ function updateproject(body,callback)
 			   flag:true
 			} 
 		},
-        //collection.find({'a': 3}).toArray(function(err, docs) {
-          //console.log(docs);
-          //});
-          //update one document
-         
+        
 		function(err, result) 
 		{
             console.log("Updated the document with the field a equal to 2");
             console.log(result)
             callback(result);
         });  
-     
     })
-	
 }
-
 
 function updateuser(body,id,callback)
 {

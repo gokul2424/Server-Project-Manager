@@ -34,6 +34,14 @@ app.get('/user/:user_id', function (req, res) {
         res.json(data);
     });
 })
+app.get('/project/:project_id', function (req, res) {
+    var id=req.params.project_id
+    console.log(id)
+    repo.findprojectspecific(id,(err,data)=>{
+        console.log(data)
+        res.json(data);
+    });
+})
 app.get('/project', function (req, res)
 {
     repo.findproject((err,data)=>

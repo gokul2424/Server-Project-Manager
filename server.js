@@ -205,7 +205,7 @@ app.put('/endprojects', function (req, res)
     console.log(body.projectname)
     repo.endproject(body,(result)=>
 	{
-		res.status(202).json({message:"ended the task",})
+		res.status(202).json({message:"ended the project",})
 	})
 })
 

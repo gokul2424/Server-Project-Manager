@@ -3,15 +3,15 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
 // Connection URL
-const url = 'mongodb://localhost:27017';
+const url = 'mongodb+srv://admin:admin@cluster0-awmrr.mongodb.net/test?retryWrites=true';
 
 // Database Name
 const dbName = 'tasks';
 
 function connect(callback)
 {
-    MongoClient.connect("mongodb://localhost:27017/dbName", 
-	{ 
+    MongoClient.connect("mongodb+srv://admin:admin@cluster0-awmrr.mongodb.net/test?retryWrites=true/dbName",
+    { 
         useNewUrlParser: true 
 	},
 	function(err, client) 
@@ -467,7 +467,7 @@ function endproject(body,callback)
 
 module.exports={
 		findtask,findproject,finduser,
-		finduserspecific,
+		finduserspecific,findprojectspecific,
 		inserttask,insertparent,insertstate,insertproject,insertuser,insertproject2,
 		deletetask,deleteemployee,deleteproject,
 		updatetask,updateuser,updateproject,

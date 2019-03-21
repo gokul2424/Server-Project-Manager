@@ -157,13 +157,13 @@ app.put('/edittasks', function (req, res)
 	})
 })
 
-app.put('/editprojects', function (req, res) 
+app.put('/editprojects/:id', function (req, res) 
 {
     var body=req.body;
-	
+	var id=req.params.id;
     console.log(req.body)
     console.log(body.projectname)
-    repo.updateproject(body,(result)=>
+    repo.updateproject(body,id,(result)=>
 	{
 		res.status(202).json({message:"updated the document in project",})
 	})
